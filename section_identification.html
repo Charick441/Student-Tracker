@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Identification - StudentTracker</title>
+  <style>
+    body {
+      background: linear-gradient(120deg, #e9fffa 0%, #f6f8fc 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin:0; padding:0;
+    }
+    .centered {
+      max-width:520px;
+      margin:40px auto 0 auto;
+      background:#fff;
+      box-shadow:0 8px 32px #0002;
+      border-radius:18px;
+      padding:40px 32px 32px 32px;
+      position:relative;
+      transition:box-shadow 0.2s;
+    }
+    .centered:hover {
+      box-shadow:0 12px 40px #0003;
+    }
+    #backBtn {
+      position:relative;
+      top:0; left:0;
+      margin-bottom:12px;
+      padding:10px 22px;
+      background:linear-gradient(90deg,#888 60%,#40916c 100%);
+      color:white;
+      border:none;
+      border-radius:8px;
+      font-size:1.08em;
+      font-weight:500;
+      cursor:pointer;
+      box-shadow:0 2px 8px #8882;
+      transition:background 0.2s, box-shadow 0.2s;
+    }
+    #backBtn:hover {
+      background:linear-gradient(90deg,#40916c 60%,#888 100%);
+      box-shadow:0 4px 16px #40916c33;
+    }
+    .student-label {
+      font-weight:bold; color:#2d6a4f; font-size:1.15em; margin-bottom:8px; display:block;
+    }
+    .input, select {
+      width:100%;
+      margin-bottom:12px;
+      padding:12px 10px;
+      border-radius:8px;
+      border:1.5px solid #b7e4c7;
+      font-size:1.08em;
+      background:#f6f8fc;
+      transition:border 0.2s, box-shadow 0.2s;
+      box-shadow:0 2px 8px #0001;
+    }
+    .input:focus, select:focus {
+      border-color:#40916c;
+      outline:none;
+      box-shadow:0 4px 16px #40916c22;
+    }
+    .btn {
+      width:100%;
+      margin:20px 0 0 0;
+      padding:14px 0;
+      background:linear-gradient(90deg,#40916c 60%,#52b788 100%);
+      color:white;
+      border:none;
+      border-radius:8px;
+      font-size:1.15em;
+      font-weight:500;
+      cursor:pointer;
+      box-shadow:0 2px 8px #40916c22;
+      transition:background 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover {
+      background:linear-gradient(90deg,#52b788 60%,#40916c 100%);
+      box-shadow:0 4px 16px #40916c33;
+    }
+    .student-list {
+      margin-top:24px;
+      text-align:center;
+    }
+    .student-btn {
+      display:inline-block;
+      margin:6px 8px;
+      padding:10px 24px;
+      background:linear-gradient(90deg,#a0c4ff 60%,#52b788 100%);
+      color:#222;
+      border:none;
+      border-radius:8px;
+      font-size:1.1em;
+      cursor:pointer;
+      text-align:center;
+      width:auto;
+      min-width:80px;
+      box-shadow:0 2px 8px #a0c4ff22;
+      transition:background 0.2s, box-shadow 0.2s;
+    }
+    .student-btn:hover {
+      background:linear-gradient(90deg,#52b788 60%,#a0c4ff 100%);
+      box-shadow:0 4px 16px #40916c33;
+    }
+  </style>
+</head>
+<body>
+    <div class="centered">
+    <button id="backBtn" style="position:relative;top:0;left:0;margin-bottom:12px;padding:8px 18px;background:#888;color:white;border:none;border-radius:6px;font-size:1em;cursor:pointer;">&#8592; Back</button>
+    <div class="student-label">Add Student</div>
+    <form id="studentForm">
+      <input type="text" id="studentName" class="input" placeholder="Name" required>
+      <input type="text" id="studentId" class="input" placeholder="Student ID" required>
+      <input type="number" id="studentAge" class="input" placeholder="Age" required>
+      <button type="submit" class="btn">Add Student</button>
+    </form>
+    <div class="student-list">
+      <label for="studentDropdown" style="font-weight:bold;color:#2d6a4f;display:block;margin-bottom:8px;">Select a SStudent</label>
+      <select id="studentDropdown" class="input" style="width:100%;margin-bottom:12px;"></select>
+      <div style="display:flex;gap:8px;justify-content:center;">
+        <button id="goStudentBtn" class="btn" style="padding:4px 12px;font-size:0.95em;">Go</button>
+        <button id="editStudentBtn" class="btn" style="background:#1b6ca8;padding:4px 12px;font-size:0.95em;">Edit</button>
+        <button id="removeStudentBtn" class="btn" style="background:#d90429;padding:4px 12px;font-size:0.95em;">Remove</button>
+      </div>
+    </div>
+  </div>
+  <script src="section_identification.js"></script>
+</body>
+</html>

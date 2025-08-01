@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Info - StudentTracker</title>
+  <style>
+    body {
+      background: linear-gradient(120deg, #e9fffa 0%, #f6f8fc 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin:0; padding:0;
+    }
+    .centered {
+      max-width:600px;
+      margin:40px auto 0 auto;
+      background:#fff;
+      box-shadow:0 8px 32px #0002;
+      border-radius:18px;
+      padding:40px 32px 32px 32px;
+      position:relative;
+      transition:box-shadow 0.2s;
+    }
+    .centered:hover {
+      box-shadow:0 12px 40px #0003;
+    }
+    #backBtn {
+      position:relative;
+      top:0; left:0;
+      margin-bottom:12px;
+      padding:10px 22px;
+      background:linear-gradient(90deg,#888 60%,#40916c 100%);
+      color:white;
+      border:none;
+      border-radius:8px;
+      font-size:1.08em;
+      font-weight:500;
+      cursor:pointer;
+      box-shadow:0 2px 8px #8882;
+      transition:background 0.2s, box-shadow 0.2s;
+    }
+    #backBtn:hover {
+      background:linear-gradient(90deg,#40916c 60%,#888 100%);
+      box-shadow:0 4px 16px #40916c33;
+    }
+    label {
+      font-weight:bold;
+      color:#2d6a4f;
+      display:block;
+      margin-bottom:8px;
+      font-size:1.08em;
+    }
+    .input, select {
+      width:100%;
+      margin-bottom:12px;
+      padding:12px 10px;
+      border-radius:8px;
+      border:1.5px solid #b7e4c7;
+      font-size:1.08em;
+      background:#f6f8fc;
+      transition:border 0.2s, box-shadow 0.2s;
+      box-shadow:0 2px 8px #0001;
+    }
+    .input:focus, select:focus {
+      border-color:#40916c;
+      outline:none;
+      box-shadow:0 4px 16px #40916c22;
+    }
+    .tabs {
+      display:flex;
+      gap:12px;
+      margin-bottom:18px;
+    }
+    .tab-btn {
+      flex:1;
+      padding:14px 0;
+      background:linear-gradient(90deg,#e9c46a 60%,#52b788 100%);
+      color:#222;
+      border:none;
+      border-radius:8px;
+      font-size:1.12em;
+      font-weight:500;
+      cursor:pointer;
+      box-shadow:0 2px 8px #e9c46a22;
+      transition:background 0.2s, box-shadow 0.2s;
+    }
+    .tab-btn.active {
+      background:linear-gradient(90deg,#40916c 60%,#52b788 100%);
+      color:#fff;
+      box-shadow:0 4px 16px #40916c33;
+    }
+    .tab-content {
+      display:none;
+      animation:fadein 0.3s;
+    }
+    .tab-content.active {
+      display:block;
+    }
+    @keyframes fadein {
+      from { opacity:0; }
+      to { opacity:1; }
+    }
+    .calendar {
+      margin:0 auto 18px auto;
+      box-shadow:0 2px 8px #40916c22;
+      border-radius:8px;
+      background:#f6f8fc;
+      padding:18px 12px;
+    }
+    table {
+      width:100%;
+      border-collapse:collapse;
+      text-align:center;
+      box-shadow:0 2px 8px #0001;
+      background:#fff;
+      border-radius:8px;
+      overflow:hidden;
+    }
+    th, td {
+      padding:12px;
+      font-size:1em;
+      border-bottom:1px solid #e9c46a33;
+    }
+    th {
+      background:#e9c46a;
+      color:#222;
+      font-weight:600;
+    }
+    td {
+      cursor:pointer;
+      transition:background 0.2s;
+      border-radius:6px;
+    }
+    td[data-day]:hover {
+      background:#b7e4c7;
+    }
+    .calendar-info {
+      margin-top:12px;
+      color:#888;
+      font-size:0.98em;
+      background:#f6f8fc;
+      border-radius:6px;
+      padding:8px 0;
+      box-shadow:0 2px 8px #0001;
+    }
+    .performance-form {
+      display:flex;
+      gap:12px;
+      margin-bottom:18px;
+    }
+    .performance-input {
+      flex:1;
+      padding:12px 10px;
+      border-radius:8px;
+      border:1.5px solid #a0c4ff;
+      font-size:1.08em;
+      background:#f6f8fc;
+      transition:border 0.2s, box-shadow 0.2s;
+      box-shadow:0 2px 8px #0001;
+    }
+    .performance-input:focus {
+      border-color:#4361ee;
+      outline:none;
+      box-shadow:0 4px 16px #4361ee22;
+    }
+    .performance-btn {
+      padding:14px 24px;
+      background:linear-gradient(90deg,#4361ee 60%,#52b788 100%);
+      color:white;
+      border:none;
+      border-radius:8px;
+      font-size:1.15em;
+      font-weight:500;
+      cursor:pointer;
+      box-shadow:0 2px 8px #4361ee22;
+      transition:background 0.2s, box-shadow 0.2s;
+    }
+    .performance-btn:hover {
+      background:linear-gradient(90deg,#52b788 60%,#4361ee 100%);
+      box-shadow:0 4px 16px #4361ee33;
+    }
+    .performance-list {
+      margin-top:12px;
+      background:#f6f8fc;
+      border-radius:8px;
+      box-shadow:0 2px 8px #0001;
+      padding:12px 8px;
+    }
+    .performance-list > div {
+      margin-bottom:10px;
+      padding:8px 12px;
+      background:#fff;
+      border-radius:6px;
+      box-shadow:0 2px 8px #40916c11;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:1.05em;
+    }
+    .performance-list > div:last-child {
+      margin-bottom:0;
+    }
+    .delete-btn {
+      background:#d90429;
+      color:white;
+      border:none;
+      border-radius:6px;
+      padding:4px 12px;
+      font-size:0.98em;
+      cursor:pointer;
+      transition:background 0.2s;
+    }
+    .delete-btn:hover {
+      background:#b7094c;
+    }
+  </style>
+</head>
+<body>  
+  <div class="centered">
+    <button id="backBtn" style="position:relative;top:0;left:0;margin-bottom:12px;padding:8px 18px;background:#888;color:white;border:none;border-radius:6px;font-size:1em;cursor:pointer;">&#8592; Back</button>
+    <div style="margin-bottom:18px;">
+      <label for="studentDropdown" style="font-weight:bold;color:#2d6a4f;display:block;margin-bottom:8px;">Select Student</label>
+      <select id="studentDropdown" class="input" style="width:100%;margin-bottom:12px;"></select>
+      <div id="studentInfoTitle" style="margin-top:8px;font-size:1.15em;color:#40916c;font-weight:600;"></div>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" id="attendanceTabBtn" type="button">Attendance</button>
+      <button class="tab-btn" id="performanceTabBtn" type="button">Academic Performance</button>
+    </div>
+    <div class="tab-content active" id="attendanceTab">
+      <div class="calendar" id="calendarContainer"></div>
+
+    </div>
+    <div class="tab-content" id="performanceTab"> 
+      <form id="performanceForm" class="performance-form">
+        <input type="text" id="performanceInput" class="performance-input" placeholder="Performance (e.g. Quiz 1: 90)" required>
+        <button type="submit" class="performance-btn">Add Performance</button>
+      </form>
+      <div class="performance-list" id="performanceList"></div>
+    </div>
+  </div>
+  <script src="student_info.js"></script>
+</body>
+</html>
